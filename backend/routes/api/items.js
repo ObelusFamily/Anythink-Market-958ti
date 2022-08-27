@@ -40,7 +40,6 @@ router.get("/", auth.optional, function (req, res, next) {
   var query = {};
   var limit = 100;
   var offset = 0;
-  const title = req.query.title;
 
   if (typeof req.query.limit !== "undefined") {
     limit = req.query.limit;
@@ -52,6 +51,11 @@ router.get("/", auth.optional, function (req, res, next) {
 
   if (typeof req.query.tag !== "undefined") {
     query.tagList = { $in: [req.query.tag] };
+  }
+
+  if (typeof req.query.title !== "undefined") {
+    const regex = new RegExp(req.query.title, "i");
+    query.title = { $regex: regex };
   }
 
   Promise.all([
@@ -72,10 +76,6 @@ router.get("/", auth.optional, function (req, res, next) {
         query._id = { $in: favoriter.favorites };
       } else if (req.query.favorited) {
         query._id = { $in: [] };
-      }
-
-      if (title) {
-        query.title = title;
       }
 
       return Promise.all([
