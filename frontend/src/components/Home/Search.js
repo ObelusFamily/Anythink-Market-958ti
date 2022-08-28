@@ -5,15 +5,13 @@ import { APPLY_TITLE_FILTER } from "../../constants/actionTypes";
 
 const Search = (props) => {
   const [searchTerm, setSearchTerm] = useState('')
-  const [isInitial, setIsInitial] = useState(true)
 
   const handleOnChange = (e) => {
     setSearchTerm(e.target.value)
   }
 
   useEffect(() => {
-    if (isInitial && searchTerm.length > 2) {
-      setIsInitial(false)
+    if (searchTerm.length > 2) {
       props.onSearchTermChange(
         searchTerm,
         (page) => agent.Items.byTitle(searchTerm, page),
