@@ -11,7 +11,7 @@ const Search = (props) => {
   }
 
   useEffect(() => {
-    if (searchTerm.length > 2) {
+    if (searchTerm.length > 3) {
       props.onSearchTermChange(
         searchTerm,
         (page) => agent.Items.byTitle(searchTerm, page),
