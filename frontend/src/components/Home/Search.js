@@ -5,13 +5,15 @@ import { APPLY_TITLE_FILTER } from "../../constants/actionTypes";
 
 const Search = (props) => {
   const [searchTerm, setSearchTerm] = useState('')
+  const [isInitial, setIsInitial] = useState(true)
 
   const handleOnChange = (e) => {
     setSearchTerm(e.target.value)
   }
 
   useEffect(() => {
-    if (searchTerm.length > 2) {
+    if (isInitial && searchTerm.length > 2) {
+      setIsInitial(false)
       props.onSearchTermChange(
         searchTerm,
         (page) => agent.Items.byTitle(searchTerm, page),
@@ -20,11 +22,7 @@ const Search = (props) => {
     }
   }, [searchTerm])
 
-  return (
-    <div>
-      <input type="text" value={searchTerm} onChange={handleOnChange} />
-    </div>
-  )
+  return <input type="text" value={searchTerm} onChange={handleOnChange} />
 }
 
 const mapDispatchToProps = (dispatch) => ({
