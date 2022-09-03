@@ -13,8 +13,8 @@ const Banner = () => {
       <div className="container p-4 text-center">
         <img src={logo} alt="banner" />
         <div>
-          <span id="get-part">
-            A place to <span onClick={handleClick}>get</span>{" "}
+          <span id="get-part" onClick={handleClick}>
+            A place to get{" "}
           </span>
           {showSearch && <Search />}
           <span> the cool stuff.</span>
