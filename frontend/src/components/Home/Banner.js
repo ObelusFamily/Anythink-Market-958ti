@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../imgs/logo.png";
-import Search from './Search'
+import Search from "./Search";
 
 const Banner = () => {
   return (
