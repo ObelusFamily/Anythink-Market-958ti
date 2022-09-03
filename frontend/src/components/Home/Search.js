@@ -20,7 +20,7 @@ const Search = (props) => {
 
   useEffect(() => {
     if (userTypedRequiredCharacters) {
-      props.onSearchTermChange(
+      onSearchTermChange(
         searchTerm,
         (page) => agent.Items.byTitle(searchTerm, page),
         agent.Items.byTitle(searchTerm)
