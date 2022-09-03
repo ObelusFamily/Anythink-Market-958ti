@@ -7,9 +7,7 @@ import {
 } from "../../constants/actionTypes";
 
 const Search = (props) => {
-  console.log(props.searchTerm);
   const { onSearchTermChange, searchTerm, onInputChange } = props;
-  // const [searchTerm, setSearchTerm] = useState("");
   const [
     userTypedRequiredNumberOfCharacters,
     setUserTypedRequiredNumberOfCharacters,

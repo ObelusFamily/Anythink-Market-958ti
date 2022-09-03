@@ -14,7 +14,11 @@ import {
   SET_SEARCH_TERM,
 } from "../constants/actionTypes";
 
-const reducer = (state = {}, action) => {
+const initialState = {
+  searchTerm: ''
+}
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ITEM_FAVORITED:
     case ITEM_UNFAVORITED:
