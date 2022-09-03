@@ -5,20 +5,27 @@ import { APPLY_TITLE_FILTER } from "../../constants/actionTypes";
 
 const Search = (props) => {
   const [searchTerm, setSearchTerm] = useState('')
+  const [userTypedRequiredCharacters, setUserTypedRequiredCharacters] = useState(false)
 
   const handleOnChange = (e) => {
     setSearchTerm(e.target.value)
   }
 
   useEffect(() => {
-    if (searchTerm.length > 3) {
+    if (searchTerm.length === 3) {
+      setUserTypedRequiredCharacters(true)
+    }
+  }, [searchTerm])
+
+  useEffect(() => {
+    if (userTypedRequiredCharacters) {
       props.onSearchTermChange(
         searchTerm,
         (page) => agent.Items.byTitle(searchTerm, page),
         agent.Items.byTitle(searchTerm)
       )
     }
-  }, [searchTerm])
+  }, [searchTerm, userTypedRequiredCharacters])
 
   return <input type="text" value={searchTerm} onChange={handleOnChange} />
 }
