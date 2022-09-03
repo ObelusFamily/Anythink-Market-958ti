@@ -27,7 +27,7 @@ const Search = (props) => {
     }
   }, [searchTerm, userTypedRequiredCharacters])
 
-  return <input type="text"id="search-box" value={searchTerm} onChange={handleOnChange} />
+  return <input type="text" id="search-box" value={searchTerm} onChange={handleOnChange} />
 }
 
 const mapDispatchToProps = (dispatch) => ({
