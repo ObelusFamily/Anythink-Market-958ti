@@ -48,7 +48,6 @@ class App extends React.Component {
     this.props.onLoad(token ? agent.Auth.current() : null, token);
   }
   render() {
-    console.log(this.props.appLoaded);
     if (this.props.appLoaded) {
       return (
         <div>

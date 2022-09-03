@@ -85,13 +85,13 @@ const MainView = (props) => {
           <TagFilterTab tag={props.tag} />
         </ul>
       </div>
-
       <ItemList
         pager={props.pager}
         items={props.items}
         loading={props.loading}
         itemsCount={props.itemsCount}
         currentPage={props.currentPage}
+        searchTerm={props.searchTerm}
       />
     </div>
   );

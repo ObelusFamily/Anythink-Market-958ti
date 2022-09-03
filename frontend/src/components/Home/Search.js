@@ -1,33 +1,39 @@
 import { useState, useEffect } from "react";
 import agent from "../../agent";
 import { connect } from "react-redux";
-import { APPLY_TITLE_FILTER } from "../../constants/actionTypes";
+import {
+  APPLY_TITLE_FILTER,
+  SET_SEARCH_TERM,
+} from "../../constants/actionTypes";
 
 const Search = (props) => {
-  const { onSearchTermChange } = props;
-  const [searchTerm, setSearchTerm] = useState("");
-  const [userTypedRequiredCharacters, setUserTypedRequiredCharacters] =
-    useState(false);
+  console.log(props.searchTerm);
+  const { onSearchTermChange, searchTerm, onInputChange } = props;
+  // const [searchTerm, setSearchTerm] = useState("");
+  const [
+    userTypedRequiredNumberOfCharacters,
+    setUserTypedRequiredNumberOfCharacters,
+  ] = useState(false);
 
   const handleOnChange = (e) => {
-    setSearchTerm(e.target.value);
+    onInputChange(e.target.value);
   };
 
   useEffect(() => {
-    if (searchTerm.length === 3) {
-      setUserTypedRequiredCharacters(true);
+    if (searchTerm?.length === 3) {
+      setUserTypedRequiredNumberOfCharacters(true);
     }
   }, [searchTerm]);
 
   useEffect(() => {
-    if (userTypedRequiredCharacters) {
+    if (userTypedRequiredNumberOfCharacters) {
       onSearchTermChange(
         searchTerm,
         (page) => agent.Items.byTitle(searchTerm, page),
         agent.Items.byTitle(searchTerm)
       );
     }
-  }, [searchTerm, userTypedRequiredCharacters, onSearchTermChange]);
+  }, [searchTerm, userTypedRequiredNumberOfCharacters, onSearchTermChange]);
 
   return (
     <input
@@ -39,9 +45,15 @@ const Search = (props) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  searchTerm: state.itemList.searchTerm,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   onSearchTermChange: (searchTerm, pager, payload) =>
     dispatch({ type: APPLY_TITLE_FILTER, searchTerm, pager, payload }),
+  onInputChange: (searchTerm) =>
+    dispatch({ type: SET_SEARCH_TERM, searchTerm }),
 });
 
-export default connect(null, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

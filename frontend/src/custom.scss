@@ -59,3 +59,11 @@ body {
 .user-info {
   min-width: 800px;
 }
+
+.no-items {
+  text-align: center;
+
+  & span {
+    font-weight: bold;
+  }
+}

@@ -11,6 +11,7 @@ import {
   PROFILE_PAGE_UNLOADED,
   PROFILE_FAVORITES_PAGE_LOADED,
   PROFILE_FAVORITES_PAGE_UNLOADED,
+  SET_SEARCH_TERM,
 } from "../constants/actionTypes";
 
 const reducer = (state = {}, action) => {
@@ -54,6 +55,11 @@ const reducer = (state = {}, action) => {
         items: action.payload.items,
         itemsCount: action.payload.itemsCount,
         currentPage: 0,
+      };
+    case SET_SEARCH_TERM:
+      return {
+        ...state,
+        searchTerm: action.searchTerm,
       };
     case HOME_PAGE_LOADED:
       return {
