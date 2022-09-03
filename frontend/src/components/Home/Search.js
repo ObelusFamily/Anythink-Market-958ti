@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { APPLY_TITLE_FILTER } from "../../constants/actionTypes";
 
 const Search = (props) => {
+  const {onSearchTermChange} = props
   const [searchTerm, setSearchTerm] = useState('')
   const [userTypedRequiredCharacters, setUserTypedRequiredCharacters] = useState(false)
 
@@ -25,7 +26,7 @@ const Search = (props) => {
         agent.Items.byTitle(searchTerm)
       )
     }
-  }, [searchTerm, userTypedRequiredCharacters])
+  }, [searchTerm, userTypedRequiredCharacters, onSearchTermChange])
 
   return <input type="text" id="search-box" value={searchTerm} onChange={handleOnChange} />
 }
