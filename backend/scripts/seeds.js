@@ -10,9 +10,9 @@ const User = mongoose.model("User");
 const Item = mongoose.model("Item");
 const Comment = mongoose.model("Comment");
 
+require("dotenv").config();
 mongoose.connect(process.env.MONGODB_URI);
 
-require("dotenv").config();
 
 const seedDB = async () => {
   for (let i = 0; i < 100; i++) {
