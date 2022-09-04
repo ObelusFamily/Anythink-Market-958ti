@@ -2,7 +2,7 @@
 const { faker } = require("@faker-js/faker");
 const mongoose = require("mongoose");
 require("dotenv").config();
-console.log(process.env.MONGODB_URI);
+console.log(process.env.DATABASE_URL);
 require("../models/User");
 require("../models/Item");
 require("../models/Comment");
@@ -11,7 +11,7 @@ const User = mongoose.model("User");
 const Item = mongoose.model("Item");
 const Comment = mongoose.model("Comment");
 
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.DATABASE_URL);
 
 const seedDB = async () => {
   for (let i = 0; i < 100; i++) {
