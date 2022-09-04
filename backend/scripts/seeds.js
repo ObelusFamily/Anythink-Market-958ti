@@ -1,7 +1,8 @@
 //TODO: seeds script should come here, so we'll be able to put some data in our local env
 const { faker } = require("@faker-js/faker");
 const mongoose = require("mongoose");
-
+require("dotenv").config();
+console.log(process.env.MONGODB_URI);
 require("../models/User");
 require("../models/Item");
 require("../models/Comment");
@@ -10,7 +11,6 @@ const User = mongoose.model("User");
 const Item = mongoose.model("Item");
 const Comment = mongoose.model("Comment");
 
-require("dotenv").config();
 mongoose.connect(process.env.MONGODB_URI);
 
 
