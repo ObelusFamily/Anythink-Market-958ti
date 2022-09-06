@@ -15,6 +15,7 @@ mongoose.connect(process.env.MONGODB_URI);
 
 const seedDB = async () => {
   for (let i = 0; i < 100; i++) {
+    console.log(i);
     const username = `${faker.name.firstName()}${faker.random.alphaNumeric(2)}`;
     const dummyUser = {
       username,
@@ -25,6 +26,7 @@ const seedDB = async () => {
     };
     const user = new User(dummyUser);
     const dbUser = await user.save();
+    console.log(dbUser);
 
     const dummyItem = {
       slug: faker.datatype.uuid(),
@@ -37,7 +39,8 @@ const seedDB = async () => {
     };
 
     const item = new Item(dummyItem);
-    const dbItem = item.save();
+    const dbItem = await item.save();
+    console.log(dbItem);
 
     const dummyComment = {
       body: "Lorem Ipsum dolor",
@@ -46,7 +49,8 @@ const seedDB = async () => {
     };
 
     const comment = new Comment(dummyComment);
-    comment.save();
+    const dbComment = await comment.save();
+    console.log(dbComment);
   }
 };
 
