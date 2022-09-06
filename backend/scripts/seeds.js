@@ -15,7 +15,6 @@ mongoose.connect(process.env.MONGODB_URI);
 
 const seedDB = async () => {
   for (let i = 0; i < 100; i++) {
-    console.log(i);
     const username = `${faker.name.firstName()}${faker.random.alphaNumeric(2)}`;
     const dummyUser = {
       username,
